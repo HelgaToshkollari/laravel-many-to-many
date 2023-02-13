@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProjectController as PublicProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::middleware(['auth', 'verified'])
 
     Route::resource("projects", ProjectController::class);
     Route::resource("types", TypeController::class);
+    Route::resource("technologies", TechnologyController::class);
    
 });
 

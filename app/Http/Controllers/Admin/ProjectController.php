@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class ProjectController extends Controller
     {
         $projects= Project::all();
         $types= Type::all();
+       
 
         return view ("admin.projects.index", compact("projects","types"));
     }
@@ -32,8 +34,9 @@ class ProjectController extends Controller
      */
     public function create(Project $project)
     {
-        $types= Type::all();
-        return view("admin.projects.create", compact("project","types"));
+        $types= Type::all(); 
+        $technologies = Technology::all();
+        return view("admin.projects.create", compact("project","types","technologies"));
     }
 
     /**
@@ -49,6 +52,10 @@ class ProjectController extends Controller
             ...$data,
             "user_id"=> Auth::id()
         ]);
+
+        if ($request->has("technologies")){
+            $project->technologies()->attach($data["technologies"]);
+        }
         return redirect()->route("admin.projects.show", $project->id);
     }
 
@@ -62,7 +69,8 @@ class ProjectController extends Controller
 
     {
         $types= Type::all();
-        return view("admin.projects.show", compact("project","types")); 
+        $technologies = Technology::all();
+        return view("admin.projects.show", compact("project","types","technologies")); 
     }
 
     /**
@@ -75,7 +83,8 @@ class ProjectController extends Controller
     {
         //$project= Project::findOrFail($id);
         $types= Type::all();
-        return view("admin.projects.edit", compact("project","types"));
+        $technologies = Technology::all();
+        return view("admin.projects.edit", compact("project","types","technologies"));
     }
 
     /**
@@ -91,6 +100,7 @@ class ProjectController extends Controller
 
         $data= $request->all();
         $project->update($data);
+        $project->technologies()->sync($data["technologies"]);
 
         return redirect()->route("admin.projects.show", $project->id );
         
@@ -105,7 +115,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
-        
+        $project->technologies()->detach();
         $project->delete();
         return redirect()->route("admin.projects.index");
 

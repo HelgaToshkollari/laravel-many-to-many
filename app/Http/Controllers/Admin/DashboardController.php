@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class DashboardController extends Controller
     public function home(){
         $user = Auth::user();
         $types= Type::all();
+        $technologies = Technology::all();
         $projects= Project::all();
         
 
@@ -24,6 +26,7 @@ class DashboardController extends Controller
         return view("admin.dashboard", [
             "users" => $users ?? null,
             "types" => $types ?? null,
+            "technologies" => $technologies ?? null,
             "projects" => $projects ?? null
         ]);
         
