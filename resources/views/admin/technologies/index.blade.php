@@ -4,7 +4,7 @@
     <div class="row justify-content-center py-2">
         <div class="col-sm-6 d-flex justify-content-end">
           <div>
-            <a href="{{ route('admin.technologies.create') }}" class="btn btn-outline-dark rounded-pill ">Add new technologie</a>
+            <a href="{{ route('admin.technologies.create') }}" class="btn btn-outline-dark rounded-pill ">Add new Technology</a>
           </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="col-sm-6">
 
             <div class="card">
-                <div class="card-header">technologies</div>
+                <div class="card-header">Technologies</div>
                 <div class="card-body">
                 <table class="table">
                     <thead>

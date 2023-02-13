@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("content")
 <div class="container py-4">
-    <h3 class="text-center">Add Type!</h3>
+    <h3 class="text-center">Add Technology!</h3>
 
   <div class="row justify-content-center">
         <div class="col-sm-6">
