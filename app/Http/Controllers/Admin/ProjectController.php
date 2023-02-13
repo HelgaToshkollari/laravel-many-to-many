@@ -59,8 +59,10 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
+
     {
-        return view("admin.projects.show", compact("project")); 
+        $types= Type::all();
+        return view("admin.projects.show", compact("project","types")); 
     }
 
     /**
@@ -103,6 +105,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
+        
         $project->delete();
         return redirect()->route("admin.projects.index");
 
