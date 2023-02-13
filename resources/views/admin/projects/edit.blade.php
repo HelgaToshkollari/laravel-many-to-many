@@ -32,6 +32,22 @@
             @endforeach
         </select>
     </div>
+
+    <div class="form-group mb-4">
+      <label class="form-label">Technology</label>
+      @foreach ($technologies as $technology)
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="techCheckbox_{{$loop->index}}" value="{{$technology->id}}" name="technologies[]"
+        {{$project->technologies->contains("id", $technology->id) ? "checked" : ""}}>
+        <label class="form-check-label" for="techCheckbox_{{$loop->index}}">{{$technology->name}}</label>
+      </div>
+        
+      @endforeach
+
+
+    </div>
+
     
   
     <div class="form-group row">

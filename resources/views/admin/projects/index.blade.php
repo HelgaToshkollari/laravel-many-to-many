@@ -20,6 +20,7 @@
                 <th>Cover</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Technology</th>
                 <th></th>
 
               </tr>
@@ -31,6 +32,12 @@
                   <td><img src="{{ $project->cover_img }}" alt="" style="width: 100px"></td>
                   <td>{{ $project->title }}</td>
                   <td>{{ $project->description}}</td>
+                  <td>
+                    @foreach ( $project->technologies as $technology )
+                    {{$technology->name}}
+                      
+                    @endforeach
+                    </td>
                   <td>
                     <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-outline-success">Edit</a>
                     <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-outline-dark">Show more</a>
