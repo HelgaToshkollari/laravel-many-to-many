@@ -48,8 +48,9 @@
       @foreach ($technologies as $technology)
 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">1</label>
+        <input class="form-check-input" type="checkbox" id="techCheckbox_{{$loop->index}}" value="{{$technology->id}}" name="technologies[]"
+        {{in_array($technology->id , []) ? "checked" : ""}}>
+        <label class="form-check-label" for="techCheckbox_{{$loop->index}}">{{$technology->name}}</label>
       </div>
         
       @endforeach
