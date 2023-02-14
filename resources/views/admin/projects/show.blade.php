@@ -9,8 +9,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $project->title }}</h5>
                     <p class="card-text">{{ $project->description }}</p>
-                    <p class="btn btn-outline-dark">type: {{ $project->type ? $project->type->name : "no type" }}</p>
-                    <div class="card-title">technology:
+                    <p class="btn btn-outline-dark">Type: {{ $project->type ? $project->type->name : "no type" }}</p>
+                    <div class="card-title">Technology:
                         @foreach ($project->technologies as $technology)
                           <span class="badge rounded-pill text-bg-secondary">{{ $technology->name }}</span>
                         @endforeach
